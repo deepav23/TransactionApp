@@ -24,7 +24,7 @@ namespace ThridayBackendCaseStudy
             log.LogInformation($"C# Timer trigger function executed at: {DateTime.Now}");
             
             Random random = new Random();
-
+            //randomly generates number to decide for operation.
             int operation = random.Next(1, 3);
 
             if(operation == 1)//operation 1 is insert
@@ -50,6 +50,7 @@ namespace ThridayBackendCaseStudy
         public int? GetUpdateObject()
         {
             var data = _dBAccess.GetTransactions();
+            //finds the first object with Status PENDING to update
             var transactionObj = data.Find(i => ((i as object[])[5]?.ToString() == "PENDING"));
             return transactionObj != null ? Convert.ToInt32((transactionObj as object[])[0]) : null;
 
@@ -64,6 +65,7 @@ namespace ThridayBackendCaseStudy
             }
             else
             {
+                //copies the first object for sample. Modify the id and status to insert as new row
                 object[] objects = (object[])data.First();
                 objects[0] = id.ToString();
                 objects[5] = "PENDING";

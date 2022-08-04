@@ -19,9 +19,12 @@ namespace ThridayBackendCaseStudyTest
             var dbAccess = new Mock<IDBAccess>();
             dbAccess.Setup(x => x.GetTransactions())
                 .Returns(()=>transactions);
+
+            //operationPerformed is set to true when any of the operation is performed.
             dbAccess.Setup(x => x.UpdateTransaction(It.IsAny<int>()))
                 .Callback(()=> operationPerformed = true);
-            dbAccess.Setup(x => x.InsertTransaction(It.IsAny<object[]>())).Callback(() => operationPerformed = true); 
+            dbAccess.Setup(x => x.InsertTransaction(It.IsAny<object[]>()))
+                .Callback(() => operationPerformed = true); 
             TransactionUpdateService transactionUpdateService = new TransactionUpdateService(dbAccess.Object);
             transactionUpdateService.Run(null, logger);
             //Assert

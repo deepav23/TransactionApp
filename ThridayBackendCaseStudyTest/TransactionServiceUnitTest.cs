@@ -17,6 +17,7 @@ namespace ThridayBackendCaseStudyTest
             //Arrange
             var request = new Mock<HttpRequest>();
             request.Setup(x => x.Query);
+            //determines the data returned based on the parameter passed
             var data = isNullData ? null : new List<object>();
             var logger = Mock.Of<ILogger>();
 
