@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThridayBackendCaseStudy", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThridayDatabase", "ThridayDatabase\ThridayDatabase.csproj", "{82468EB9-17F7-4E37-AB31-18F6A1473C07}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThridayBackendCaseStudyTest", "ThridayBackendCaseStudyTest\ThridayBackendCaseStudyTest.csproj", "{890009DF-91B1-490B-9580-7F3BECE976DB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{82468EB9-17F7-4E37-AB31-18F6A1473C07}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{82468EB9-17F7-4E37-AB31-18F6A1473C07}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{82468EB9-17F7-4E37-AB31-18F6A1473C07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{890009DF-91B1-490B-9580-7F3BECE976DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{890009DF-91B1-490B-9580-7F3BECE976DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{890009DF-91B1-490B-9580-7F3BECE976DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{890009DF-91B1-490B-9580-7F3BECE976DB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

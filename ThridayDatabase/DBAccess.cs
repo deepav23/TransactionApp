@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ThridayDatabase
 {
-    public class DBAccess
+    public class DBAccess : IDBAccess
     {
         private string _dbUri;
 
@@ -27,7 +27,7 @@ namespace ThridayDatabase
 
             var sql = "select * from banktransactions";
             List<object> obs = new List<object>();
-            
+
             using (var con = new SqliteConnection($"Data Source={_dbUri};Mode=ReadOnly"))
             {
                 con.Open();
@@ -51,10 +51,10 @@ namespace ThridayDatabase
         }
 
         public void InsertTransaction(object[] Transaction)
-        {    
+        {
             var insertSql = "insert into banktransactions (id, accountUuid, transactionType, date, transactionTitle, status, description, cashflow, amount, postedDate, gst,businessUsePercentage )" +
                              " VALUES (@id, @accountUuid, @transactionType, @date, @transactionTitle, @status, @description, @cashflow, @amount, @postedDate, @gst,@businessUsePercentage)";
-           
+
             using (var con = new SqliteConnection($"Data Source={_dbUri}"))
             {
                 con.Open();
@@ -81,7 +81,7 @@ namespace ThridayDatabase
         public void UpdateTransaction(int Id)
         {
             var sql = "update banktransactions set status= 'POSTED' where id = @id";
-            
+
             using (var con = new SqliteConnection($"Data Source={_dbUri}"))
             {
                 con.Open();
