@@ -53,7 +53,13 @@ public class GetTransactions
                 });
 
             });
-            return new OkObjectResult(finalData);
+            ResponseObject response = new ResponseObject();
+            response.Status = "200";
+            response.ErrorMessage = "";
+            response.NavigateTo = "";
+            response.Data = new Data() { Transactions = finalData };
+            response.Successful = true;
+            return new OkObjectResult(response);
         }
         catch(Exception ex)
         {
