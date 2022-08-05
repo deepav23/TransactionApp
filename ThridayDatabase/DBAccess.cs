@@ -12,16 +12,28 @@ namespace ThridayDatabase
     public class DBAccess : IDBAccess
     {
         private string _dbUri;
-
+        
         public DBAccess()
         {
+            bool isDevEnv= Environment.GetEnvironmentVariable("Azure_Functions_Environment") =="Development"? true : false;
+
+            if (!isDevEnv)
+            {
+                _dbUri = $"{Environment.GetEnvironmentVariable("HOME")}/site/wwwroot/" + "thriday.sqlite";
+                string _dbCopy = $"{Environment.GetEnvironmentVariable("HOME")}/" + "thriday.sqlite";
+                File.Copy(_dbUri, _dbCopy);
+                File.SetAttributes(_dbCopy, FileAttributes.Normal);
+                _dbUri = _dbCopy;
+            }
+#if DEBUG
             var fileInfo = new FileInfo(Assembly.GetExecutingAssembly().Location);
             string path = fileInfo.Directory.Parent.FullName;
             var indexbin = path.IndexOf("bin");
             _dbUri = path.Substring(0, indexbin) + "thriday.sqlite";
-
+#endif
             SQLitePCL.Batteries.Init();
         }
+       
         public List<object> GetTransactions()
         {
 
