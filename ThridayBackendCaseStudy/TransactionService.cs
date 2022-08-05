@@ -27,12 +27,7 @@ public class GetTransactions
     public async Task<IActionResult> GetTransactionsAsync(
         [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequest req, ILogger log)
     {
-        log.LogInformation("C# HTTP trigger function processed a request.");
-
-        /*
-         * TODO: Fetch transactions from database
-         * Return them in the same format as SampleData/backend-response.json
-        */
+        log.LogInformation("C# HTTP trigger function processed a request.");       
         try
         {
             var data = _dBAccess.GetTransactions();
@@ -62,9 +57,8 @@ public class GetTransactions
         }
         catch(Exception ex)
         {
-            string error = ex.Message;
-            log.LogInformation(error);
-            return new BadRequestObjectResult(error);
+            log.LogError(ex,"Error executing the GetTransactions");
+            return new BadRequestObjectResult(ex);
         }
     }
 

@@ -5,7 +5,7 @@ using ThridayDatabase;
 
 namespace ThridayBackendCaseStudyTest
 {
-    public class UnitTest1
+    public class TransactionUpdateServiceUnitTest
     {
         [Fact]
         public void Function_Performed_Operation()
@@ -26,7 +26,7 @@ namespace ThridayBackendCaseStudyTest
             dbAccess.Setup(x => x.InsertTransaction(It.IsAny<object[]>()))
                 .Callback(() => operationPerformed = true); 
             TransactionUpdateService transactionUpdateService = new TransactionUpdateService(dbAccess.Object);
-            transactionUpdateService.Run(null, logger);
+            transactionUpdateService.PerformOperation(null, logger);
             //Assert
             Assert.True(operationPerformed);
         }
