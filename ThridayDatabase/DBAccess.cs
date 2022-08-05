@@ -21,8 +21,11 @@ namespace ThridayDatabase
             {
                 _dbUri = $"{Environment.GetEnvironmentVariable("HOME")}/site/wwwroot/" + "thriday.sqlite";
                 string _dbCopy = $"{Environment.GetEnvironmentVariable("HOME")}/" + "thriday.sqlite";
-                File.Copy(_dbUri, _dbCopy);
-                File.SetAttributes(_dbCopy, FileAttributes.Normal);
+                if (!File.Exists(_dbCopy))
+                {
+                    File.Copy(_dbUri, _dbCopy);
+                    File.SetAttributes(_dbCopy, FileAttributes.Normal);
+                }
                 _dbUri = _dbCopy;
             }
 #if DEBUG
