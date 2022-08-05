@@ -29,4 +29,9 @@ We have provided a JSON file containing a small sample from an API response; it 
 
 ### Acceptance Criteria
 
-
+## Task Updates:
+The Project has been updated with the requested Azure Function. 
+ --Created an HTTP Triggered Azure function, matching the provided Sample JSON.When Deployed in Azure either in Windows or Linux container, this can be tested in Azure Portal.
+ -- Created a Timer based Azure function, which runs every 30 minutes, and randomly decides to do one of the following:
+  - Option 1 : Generate a new transaction, and insert it into the database
+  - Option 2 : Update an existing transaction where the status is "PENDING", to a status of "POSTED". 

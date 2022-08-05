@@ -5,25 +5,22 @@ using ThridayDatabase;
 
 namespace ThridayBackendCaseStudy
 {
-    public abstract class Operation
+    public interface IOperation
+    {        
+        public object[] GetObject();
+
+        public void PerformOperation();
+    }
+
+    public class InsertOperation : IOperation
     {
-        internal readonly IDBAccess _dBAccess;
-        public Operation(IDBAccess dBAccess)
+        private IDBAccess _dBAccess;
+        public InsertOperation(IDBAccess dBAccess)
         {
             _dBAccess = dBAccess;
         }
-        public abstract object[] GetObject();
 
-        public abstract void PerformOperation();
-    }
-
-    public class InsertOperation : Operation
-    {
-        public InsertOperation(IDBAccess dBAccess) : base(dBAccess)
-        {
-        }
-
-        public override object[] GetObject()
+        public object[] GetObject()
         {
             var data = _dBAccess.GetTransactions();
             var id = data.Count + 1;
@@ -40,7 +37,7 @@ namespace ThridayBackendCaseStudy
                 return objects;
             }
         }
-        public override void PerformOperation()
+        public void PerformOperation()
         {
             var insertObject = GetObject();
             if (insertObject != null)
@@ -50,13 +47,15 @@ namespace ThridayBackendCaseStudy
         }
     }
 
-    public class UpdateOperation : Operation
+    public class UpdateOperation : IOperation
     {
-        public UpdateOperation(IDBAccess dBAccess) : base(dBAccess)
+        private IDBAccess _dBAccess;
+        public UpdateOperation(IDBAccess dBAccess)
         {
+            _dBAccess = dBAccess;
         }
 
-        public override object[] GetObject()
+        public object[] GetObject()
         {
             var data = _dBAccess.GetTransactions();
             //finds the first object with Status PENDING to update
@@ -64,7 +63,7 @@ namespace ThridayBackendCaseStudy
             return transactionObj as object[];
 
         }
-        public override void PerformOperation()
+        public void PerformOperation()
         {
             var updateObjectId = GetObject();
             if (updateObjectId != null)

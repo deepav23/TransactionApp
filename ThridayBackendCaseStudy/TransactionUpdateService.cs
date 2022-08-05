@@ -26,23 +26,7 @@ namespace ThridayBackendCaseStudy
             log.LogInformation($"C# Timer trigger function executed at: {DateTime.Now}");
             try
             {
-                Operation operation;
-                Random random = new Random();
-                //randomly generates number to decide for operation.
-                int operationType = random.Next(1, 3);
-                switch (operationType)
-                {
-                    case 1:
-                        operation = new InsertCreator().CreateOperation(_dBAccess);
-                        log.LogInformation($"C# Timer trigger function insert selected");
-                        break;
-                    case 2:
-                        operation = new UpdateCreator().CreateOperation(_dBAccess);
-                        log.LogInformation($"C# Timer trigger function update selected");
-                        break;
-                    default: operation = null;
-                        break;
-                }
+                IOperation operation = OperationFactory.GetOperationInstance(_dBAccess);               
                 operation.PerformOperation();
             }
             catch(Exception ex)
