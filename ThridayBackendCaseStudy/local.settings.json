@@ -2,6 +2,6 @@
   "IsEncrypted": false,
   "Values": {
     "AzureWebJobsStorage": "UseDevelopmentStorage=true",
-    "TimerInterval": "0 1 1-2 * * *"
+    "TimerInterval": "0 5 * * * *"
   }
 }
